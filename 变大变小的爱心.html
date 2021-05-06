@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>爱心动画</title>
+	<style>
+		html,body{
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			background-color: black;
+		}
+		.div{
+			width: 200px;
+			height: 200px;
+			background-color: pink;
+			position: relative;
+			animation: donhua 2s infinite;
+		}
+		.div::before{
+			position: absolute;
+			top: -100px;
+			content: '';
+			border-radius: 50%;
+			width:  200px;
+			height: 200px;
+			background-color: pink;
+			z-index: -1;
+		}
+		.div:after{
+			position: absolute;
+			left: 100px;
+			border-radius: 50%;
+			content: '';
+			width:  200px;
+			height: 200px;
+			background-color: pink;
+			z-index: -1;
+		}
+		@keyframes donhua{
+			0%,100%{
+				transform:rotate(-45deg) scale(1);
+			}
+			50%{
+				transform:rotate(-45deg) scale(0.7);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="div"></div>
+</body>
+</html>

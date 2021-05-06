@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>加载动画</title>
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			background-color: black;
+		}
+		h1{
+			color: #ccc;
+			font-size: 8em;
+			position: relative;
+		}
+		h1::after{
+			content: attr(data-text);
+			color: #f0f;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			overflow: hidden;
+			animation: jz 5s infinite;
+		}
+		@keyframes jz{
+			0%{
+				width: 0;
+			}
+			100%{
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<h1 data-text="hello&nbsp;world!">hello world!</h1>
+</body>
+</html>
