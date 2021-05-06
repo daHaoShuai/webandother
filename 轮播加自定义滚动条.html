@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>轮播图</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #111111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .imgBox {
+        width: 400px;
+        height: 300px;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+      }
+      .imgBox img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+      }
+      .imgBox img.active {
+        opacity: 1;
+      }
+      p {
+        margin-top: 30px;
+        width: 80%;
+        font-size: 20px;
+        line-height: 40px;
+        text-indent: 2rem;
+        letter-spacing: 2px;
+        color: #eeeeee;
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          #1fa2ff,
+          #12d8fa,
+          #a6ffcb
+        );
+        border-radius: 6px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(to bottom, transparent, #e65c00, #f9d423);
+      }
+      ::-webkit-scrollbar-track {
+        background: linear-gradient(to left, #003973, #e5e5be);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="imgBox">
+      <img class="active" src="https://picsum.photos/400/300?random=1" alt="" />
+      <img src="https://picsum.photos/400/300?random=2" alt="" />
+      <img src="https://picsum.photos/400/300?random=3" alt="" />
+      <img src="https://picsum.photos/400/300?random=4" alt="" />
+    </div>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi voluptatibus error eum odio ea illo saepe minus temporibus neque quos. Necessitatibus totam molestias porro nobis laboriosam ad fugit quae optio.
+    Facere quo ea delectus nisi asperiores sint doloremque quas, architecto molestias quibusdam corporis repellat est obcaecati mollitia natus quod itaque accusantium fuga eius deleniti aliquid sapiente numquam impedit commodi? Culpa.
+    Animi repellat placeat velit, quo vel doloremque ratione, commodi sunt veritatis possimus impedit, reiciendis provident iste voluptas tempore temporibus esse! Cupiditate beatae obcaecati explicabo cum repellat modi ad dolorem officiis!
+    Officia animi soluta quasi laboriosam accusantium, obcaecati reprehenderit aliquid esse expedita, officiis vel natus et maxime omnis ipsa iusto maiores iste veritatis beatae ipsam corrupti voluptatum. Est reiciendis illum magnam.
+    Repellendus, architecto. Quae numquam perspiciatis ad. Quas, explicabo sunt autem magnam obcaecati nam nobis omnis ut consequatur possimus! Cupiditate sed corporis quaerat. Aspernatur qui quas id maiores odit harum sunt.
+    Animi ducimus recusandae sit, nobis deserunt, voluptatem consectetur perferendis ipsum similique voluptates blanditiis omnis nemo labore laborum sapiente atque molestias! Harum nulla rem voluptatem maiores minus id explicabo accusantium corrupti.
+    Eaque alias temporibus veritatis distinctio aut nemo suscipit incidunt, saepe ea quasi beatae. Eaque similique a odit numquam rem neque quis quam voluptatibus ullam, sint totam veritatis quasi reprehenderit nostrum.
+    Ipsa, nesciunt nisi numquam adipisci, natus quia aliquam id odio laboriosam repudiandae fugit molestias totam. Consectetur repellendus reprehenderit et provident cupiditate! Placeat perspiciatis ipsum et quae vel voluptate soluta in?
+    Quo voluptatem vitae magni sed aperiam voluptate voluptas cum voluptatibus qui, consequuntur laboriosam soluta nam corporis cupiditate deserunt fugit libero minima natus explicabo molestiae ipsam praesentium ratione sunt? Magni, officiis?
+    Quasi magnam, molestiae odit blanditiis consequatur est laboriosam voluptates porro, aut, ex doloribus facilis! Officiis magni, ipsam, tempore, tenetur dolore sit error reiciendis ad iusto iure voluptatum necessitatibus odio temporibus.
+    Itaque quidem voluptates eum expedita possimus sint nostrum cumque, dolore omnis hic minima quibusdam neque, deleniti reiciendis rem blanditiis necessitatibus facere veritatis alias autem iste. Quae voluptas quaerat ducimus atque.
+    Iste earum ratione nostrum quas eius illo deserunt debitis voluptatum numquam optio exercitationem necessitatibus deleniti ipsum sequi, nam eligendi expedita nobis alias odit qui repellendus? Totam maxime inventore dolorem error.
+    Fugiat possimus voluptates dolorem suscipit hic aliquid nesciunt dolore fugit nemo, reiciendis esse laudantium neque unde facilis? Et suscipit eveniet expedita doloribus, nobis commodi veritatis, soluta accusantium ad accusamus perferendis.
+    At labore sequi molestias eius voluptatibus, repudiandae rerum a delectus quibusdam enim quos dignissimos vero quidem voluptates eum, expedita cupiditate eaque non debitis blanditiis nulla? Explicabo iste provident deserunt itaque.
+    Dicta dolores dolore deleniti ipsa consectetur cumque laudantium. Doloribus laborum labore animi repellat cum sequi autem aliquam nesciunt rem eaque similique laudantium voluptatibus, voluptatum sint sunt aut quidem a cupiditate.
+    Pariatur, culpa labore officiis saepe rerum quisquam suscipit quae possimus dolore, ad ea quibusdam doloremque hic delectus error, amet necessitatibus? Laboriosam nisi repellendus autem facere, sapiente praesentium debitis nihil itaque.
+    Ullam eos tempore possimus totam fugit vitae porro perferendis esse enim ab, error non blanditiis modi. Tempora dolor dolorem odit aspernatur, perferendis temporibus ipsa! Vitae sint fugiat accusantium a mollitia!
+    Sint necessitatibus, a aspernatur nulla maxime modi placeat ad ducimus quas veniam numquam explicabo, tempora facilis, corporis recusandae voluptatem fugit voluptatum. Corrupti rerum doloremque cumque eaque aut aliquam deleniti mollitia?
+    Distinctio suscipit similique aliquam consequuntur! Impedit nostrum in assumenda recusandae modi, exercitationem facere suscipit quaerat quod soluta. Dicta a illum aspernatur illo adipisci, eum vero atque voluptatum, ipsum at quod!
+    Facere dolores ex officiis dolor distinctio totam facilis fugiat accusamus, tempora ad molestias consequuntur nostrum magnam veniam eveniet repellat sapiente ut in reprehenderit. Suscipit vitae omnis dolorem, iusto architecto sint.
+    Explicabo illum, cupiditate numquam, laboriosam libero et dolor quam a quod fuga sed expedita at, accusantium quisquam. Rem, vero facere. Deleniti quod commodi itaque vitae, vel maiores nam excepturi magnam?
+    Iure nesciunt temporibus dolor voluptate repellendus consectetur laborum pariatur provident harum rerum? Illum fuga, cupiditate dolorum repellendus excepturi incidunt, quia optio cumque nostrum eos saepe, fugiat placeat ipsum deserunt voluptate.
+    Fugit possimus reprehenderit molestias. Numquam eius totam velit vitae doloribus consequuntur ipsum tempore minima asperiores saepe officia illo, atque ab hic eos veniam odit commodi sapiente nam cum nihil pariatur?
+    Necessitatibus, itaque voluptatem repudiandae ut obcaecati cupiditate iure eius voluptatum voluptatibus inventore illo, magnam modi. Nam tenetur expedita laborum, corporis, iste, dolorum sunt odit perspiciatis nisi praesentium incidunt cupiditate? Molestiae.
+    Officiis dolor doloribus deserunt temporibus vero possimus mollitia alias similique, reprehenderit quidem expedita quis perferendis animi praesentium nam consequatur harum? Sint ea, fuga doloribus suscipit dolores debitis voluptate asperiores ducimus?
+    Provident non adipisci tempora quasi iure repellat quos rem, ducimus sunt quisquam deserunt ratione repellendus, nobis quibusdam id ipsa nisi neque odit laudantium dolor est exercitationem. Fugit ex eligendi minima!
+    Nostrum officiis atque porro, mollitia impedit libero hic deserunt, earum, expedita facilis eos aperiam in repellendus! Earum perspiciatis neque voluptatem sequi voluptatum unde, sunt, ipsa eius pariatur quos aliquam est?
+    Laborum neque, quam rerum, ipsam fugit nobis, explicabo atque omnis quas nesciunt dolores quo perspiciatis quos reprehenderit? Voluptas quas adipisci nisi reiciendis laudantium recusandae enim cumque saepe, a modi cupiditate?
+    Sunt, nostrum explicabo inventore voluptate optio doloremque distinctio quas nam saepe recusandae aperiam voluptatibus totam. Quibusdam, nemo minima unde quod ratione nostrum? Sed quibusdam eos corrupti obcaecati qui est. Consequuntur.
+    Libero atque vel excepturi harum mollitia quibusdam neque laudantium id quae repellat. Distinctio dicta eligendi reiciendis vel laboriosam eaque, adipisci reprehenderit atque vitae debitis expedita pariatur quod assumenda ducimus nesciunt?</p>
+    <script>
+      const imgs = document.querySelectorAll("img");
+
+      // 轮播方法
+      let lun = () => {
+        if (i < imgs.length) {
+          imgs[i].classList.add("active");
+          imgs[i - 1].classList.remove("active");
+          console.log(i);
+          i++;
+        } else {
+          console.log(i);
+          imgs[i - 1].classList.remove("active");
+          imgs[0].classList.add("active");
+          i = 1;
+        }
+      };
+
+      let i = 1;
+      // 开启轮播
+      let timer = setInterval(lun, 3000);
+
+      const imgbox = document.querySelector(".imgBox");
+      // 鼠标移入事件
+      imgbox.onmouseover = () => {
+        // 清除轮播
+        clearInterval(timer);
+      };
+      // 鼠标移出事件
+      imgbox.onmouseout = () => {
+        // 重新开启轮播
+        timer = setInterval(lun, 3000);
+      };
+    </script>
+  </body>
+</html>
