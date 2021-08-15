@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拟态风格</title>
+    <style>
+        :root {
+            --diyColor: #2c3e50;
+            --bgc: #eee;
+            --shadow: -3px -3px 7px rgba(255, 255, 255, 1),
+                3px 3px 7px rgba(0, 0, 0, 0.1);
+            --shadowf: inset -3px -3px 7px rgba(255, 255, 255, 1),
+                inset 3px 3px 7px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bgc);
+        }
+
+        .main {
+            width: 500px;
+            height: 400px;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            box-shadow: var(--shadowf);
+        }
+
+        .name {
+            color: var(--diyColor);
+            margin-top: 1rem;
+            font-weight: bolder;
+        }
+
+        .content {
+            color: var(--diyColor);
+            font-size: 0.7rem;
+            font-weight: bolder;
+            line-height: 1.5rem;
+            margin: 3rem;
+        }
+
+        .more {
+            color: var(--diyColor);
+            outline: none;
+            user-select: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            padding: 1rem;
+            background-color: var(--bgc);
+            box-shadow: var(--shadow);
+        }
+
+        .more:active {
+            box-shadow: var(--shadowf);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="logo">
+            <img
+                src="https://api.ixiaowai.cn/mcapi/mcapi.php" />
+        </div>
+        <h3 class="name">lorem</h3>
+        <p class="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, ipsa,
+            voluptas molestias voluptatum expedita illo repellat saepe minima harum
+            doloribus nemo ipsam facilis accusantium aliquid ipsum alias unde itaque
+            officiis.
+        </p>
+        <button class="more">lorem</button>
+        <script>
+            document.querySelector('button').onclick = _ => {
+                let bgcColor = `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`
+                let fontColor = `rgb(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)})`
+                document.body.style.setProperty('--bgc', bgcColor)
+                document.body.style.setProperty('--diyColor', fontColor)
+            }
+        </script>
+    </div>
+</body>
+
+</html>

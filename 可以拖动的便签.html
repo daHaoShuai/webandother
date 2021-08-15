@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background-color: #eee;
+        }
+
+        .main {
+            display: none;
+            width: 300px;
+            height: 200px;
+            background-color: #fbf3ac;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 3px;
+            box-shadow: -8px -8px 16px -10px rgba(255, 255, 255, 1),
+                8px 8px 16px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .main header {
+            width: 100%;
+            height: 40px;
+            background-color: #f1c40f;
+        }
+
+        .main header span {
+            display: block;
+            float: right;
+            width: 20px;
+            height: 20px;
+            margin-top: 10px;
+            margin-right: 10px;
+            user-select: none;
+            text-align: center;
+            color: #eee;
+            cursor: pointer;
+        }
+
+        .main header span:hover {
+            color: red;
+        }
+
+        .content {
+            width: 100%;
+            height: calc(100% - 40px);
+            overflow: hidden;
+        }
+
+        .content textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            outline: none;
+            border: none;
+            background-color: #fbf3ac;
+        }
+
+        button {
+            user-select: none;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+        }
+    </style>
+</head>
+
+<body>
+    <button>打开便签</button>
+    <div class="main">
+        <header>
+            <span>X</span>
+        </header>
+        <div class="content">
+            <textarea></textarea>
+        </div>
+    </div>
+    <script>
+        const main = document.querySelector(".main"),
+            header = document.querySelector(".main header"),
+            span = document.querySelector(".main header span"),
+            btn = document.querySelector('button')
+
+        main.onmousedown = e1 => {
+            console.log('鼠标按下');
+            document.onmousemove = (e2) => {
+                main.style.top = `${parseInt(getComputedStyle(main).top) + e2.movementY}px`
+                main.style.left = `${parseInt(getComputedStyle(main).left) + e2.movementX}px`
+            };
+        };
+
+        main.onmouseup = _ => {
+            console.log('鼠标松开');
+            document.onmousemove = null
+        }
+
+        span.onclick = _ => {
+            main.style.display = 'none'
+        }
+
+        btn.onclick = _ => {
+            main.style.display = 'block'
+        }
+    </script>
+</body>
+
+</html>

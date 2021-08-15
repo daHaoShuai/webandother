@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会动的水滴效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: #3498db;
+        }
+
+        .main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            box-sizing: border-box;
+            background: transparent;
+            border-radius: 60% 40% 43% 57% / 48% 60% 40% 52%;
+            box-shadow: inset 10px 20px 30px rgba(0, 0, 0, 0.5),
+                10px 10px 20px rgba(0, 0, 0, 0.3), 15px 15px 30px rgba(0, 0, 0, 0.05),
+                inset -10px -10px 15px rgba(255, 255, 255, 0.8);
+            animation: move 4s linear infinite;
+        }
+
+        .main::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            top: 130px;
+            left: 40px;
+        }
+
+        .main::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            top: 100px;
+            left: 100px;
+        }
+
+        @keyframes move {
+            25% {
+                border-radius: 29% 71% 51% 49% / 65% 44% 56% 35%;
+            }
+
+            50% {
+                border-radius: 68% 32% 51% 49% / 34% 59% 41% 66%;
+            }
+
+            75% {
+                border-radius: 68% 32% 51% 49% / 59% 45% 55% 41%;
+            }
+
+            100% {
+                border-radius: 60% 40% 43% 57% / 48% 60% 40% 52%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main"></div>
+</body>
+
+</html>

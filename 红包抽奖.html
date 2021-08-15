@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红包抽奖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background-color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fatherbox {
+            display: grid;
+            grid-auto-rows: 200px 200px;
+            grid-template-columns: 150px 150px 150px 150px 150px;
+            row-gap: 20px;
+            column-gap: 20px;
+        }
+
+        .app {
+            margin: 10px;
+            width: 150px;
+            height: 200px;
+            position: relative;
+        }
+
+        .main,
+        .content {
+            width: 150px;
+            height: 200px;
+            border-radius: 5px;
+            box-shadow: -3px -3px 7px rgba(255, 255, 255, 1),
+                3px 3px 7px rgba(58, 25, 25, 0.1);
+            background-color: #f4324c;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            user-select: none;
+            z-index: 1;
+            transition: 1.2s all cubic-bezier(0.23, 0.75, 0.84, 0.27);
+        }
+
+        .content {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            transition: 1.2s all cubic-bezier(0.23, 0.75, 0.84, 0.27);
+        }
+
+        .main::before {
+            content: "";
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            position: absolute;
+            top: -35%;
+            left: 0;
+            border-bottom: 1px solid white;
+        }
+
+        .tq {
+            width: 40px;
+            height: 40px;
+            background-color: rgb(254, 254, 67);
+            border-radius: 50%;
+            position: absolute;
+            top: 30%;
+            left: 37%;
+            transition: 1s all cubic-bezier(0.23, 0.75, 0.84, 0.27);
+        }
+
+        .tq::after {
+            width: 15px;
+            height: 15px;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f4324c;
+        }
+
+        .main span,
+        .content span {
+            text-align: center;
+            color: rgb(254, 254, 67);
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .content span {
+            top: 50%;
+        }
+
+        @keyframes fz {
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        .tq.active {
+            animation: fz 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fatherbox"></div>
+    <script>
+        const jpArr =
+            "白菜一颗、棋、公主涂色、贴纸、小笔记本、黄瓜一根、水性笔、兔子灯、水性笔、西红柿一个".split(
+                "、"
+            );
+        const jpStr = (_) => jpArr[Math.floor(Math.random() * jpArr.length)];
+
+        for (let i = 1; i <= jpArr.length; i++) {
+            let domStr = `
+                      <div class="app">
+                        <div class="main m${i}">
+                          <div class="tq tq${i}"></div>
+                          <span>恭喜发财</span>
+                        </div>
+                        <div class="content c${i}">
+                          <span>再来一次</span>
+                        </div>
+                      </div>`;
+            document.querySelector(".fatherbox").innerHTML += domStr;
+        }
+
+        for (let i = 1; i <= jpArr.length; i++) {
+            let m = document.querySelector(`.m${i}`),
+                c = document.querySelector(`.c${i}`),
+                tq = document.querySelector(`.tq${i}`),
+                jp = document.querySelector(`.c${i} span`);
+
+            m.onclick = (_) => {
+                tq.classList.add("active");
+                setTimeout((_) => {
+                    tq.classList.remove("active");
+                    m.style.display = "none";
+                    jp.innerText = jpStr();
+                }, 1000);
+            };
+
+            c.onclick = (_) => {
+                m.style.display = "block";
+                jp.innerText = jpStr();
+            };
+        }
+
+        // 双击空白重新抽取
+        document.body.ondblclick = (_) => {
+            document
+                .querySelectorAll(".main")
+                .forEach((item) => (item.style.display = "block"));
+        };
+    </script>
+</body>
+
+</html>

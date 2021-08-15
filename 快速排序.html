@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快速排序</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        const arr = [45, 12, 34, 56, 32, 76, 43, 23]
+
+        const quickSort = (arr, left, right) => {
+            // 如果传入的左边的索引大于传进来的右边的索引,就结束
+            if (left > right) {
+                return
+            }
+
+            // 定义一个基数
+            let base = arr[left]
+            // 定义变量l指向数组的最左边
+            let l = left
+            // 定义变量r指向数组的最右边
+            let r = right
+            // 当左指针和右指针不相遇时,分别移动左右指针
+            while (l != r) {
+
+                // 如果右指针位置的值大于等于基准值并且左指针的值小于右指针的值,就让右指针左移
+                while (arr[r] >= base) {
+                    r--
+                }
+
+                // 如果左指针位置的值小于等于基准值并且左指针的值小于右指针的值,就让左指针右移
+                while (arr[l] <= base && l < r) {
+                    l++
+                }
+
+                // 代码走到这里时左指针和右指针都停下了,交换这2个位置的值
+                const temp = arr[l]
+                arr[l] = arr[r]
+                arr[r] = temp
+            }
+
+            // 执行完上面的循环后,此时左指针和右指针就相遇了
+            // 把相遇位置的值设置给基准值位置的值
+            arr[left] = arr[l]
+            // 把基准值位置的值设置给相遇位置的值
+            arr[l] = base
+            // 交换完后,现在的数组就是基准数左边是比基准数小的值基准数右边就是比基准数大的值
+            // 然后分别使用递归排列基准数左右的数组
+            quickSort(arr, left, l - 1)
+            quickSort(arr, r + 1, right)
+        }
+        // 排序		
+        quickSort(arr, 0, arr.length - 1)
+        console.log(arr)
+    </script>
+</body>
+
+</html>
