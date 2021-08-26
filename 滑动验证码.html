@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>滑动验证码</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .captcha {
+            --width: 400px;
+            --height: 260px;
+            --puzzle-width: 80px;
+            --puzzle-height: 80px;
+            --moved: 0px;
+            /*移动的距离*/
+
+            display: block;
+            width: var(--width);
+            height: var(--height);
+            border-radius: 5px;
+            background-image: url(https://source.unsplash.com/random);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .captcha::before,
+        .captcha::after {
+            position: absolute;
+            content: "";
+            display: block;
+            /* 其他属性跟父级元素一样 */
+            width: inherit;
+            height: inherit;
+            border-radius: inherit;
+            background-image: inherit;
+            background-size: inherit;
+            background-position: inherit;
+            clip-path: inset(calc(((var(--height) - var(--puzzle-height))) / 2) var(--puzzle-width) calc(((var(--height) - var(--puzzle-height))) / 2) calc(var(--width) - (var(--puzzle-width) * 2)));
+        }
+
+        .captcha::before {
+            background-color: rgba(90, 32, 32, 0.6);
+            background-blend-mode: multiply;
+        }
+
+        .captcha::after {
+            transform: translateX(clamp(calc(var(--width) * -1),
+                        calc((var(--width) * -1) + var(--moved)),
+                        calc(var(--puzzle-width))));
+            /* 动画回弹效果 */
+            transition: 0.25s all ease-in-out;
+        }
+
+        .captcha:active::after {
+            transition: none;
+        }
+
+        .handle {
+            width: calc(var(--width) + var(--puzzle-width) * 2);
+            height: 30px;
+            border-radius: 18px;
+            background-color: #eee;
+            position: absolute;
+            bottom: -50px;
+            left: calc(var(--puzzle-width) * 2 * -1);
+            box-shadow: inset 0px 0px 12px rgba(0, 0, 0, 0.2);
+            border: 3px solid #ccc;
+        }
+
+        .handle span {
+            display: block;
+            width: var(--puzzle-width);
+            height: inherit;
+            border-radius: inherit;
+            background-color: #fff;
+            box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.25),
+                0px 2px 4px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            cursor: move;
+            transform: translateX(
+                    /* 限制最小值和最大值clamp(最小值,移动值,最大值) */
+                    clamp(0px, var(--moved), calc(var(--width) + var(--puzzle-width))));
+            /* 动画回弹效果 */
+            transition: 0.25s all ease-in-out;
+        }
+
+        .captcha:active .handle span {
+            transition: none;
+        }
+
+        .captcha.passed::before,
+        .captcha.passed::after,
+        .captcha.passed .handle {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="captcha">
+        <div class="handle">
+            <span></span>
+        </div>
+    </div>
+    <script>
+        let shouldMove = false; //用来判断鼠标是不是点下的状态
+        const captcha = document.querySelector(".captcha");
+        const handle = document.querySelector(".handle");
+        const btn = document.querySelector(".handle span");
+
+        // 按钮点下
+        btn.onmousedown = () => {
+            shouldMove = true;
+        };
+        // 鼠标移动
+        document.onmousemove = (e) => {
+            if (shouldMove) {
+                // 获取拉动框与画面左边的距离
+                const offsetLeft = handle.getBoundingClientRect().left;
+                // 获取按钮的宽度
+                const buttonWidth = btn.getBoundingClientRect().width;
+                // 修改--moved的值, (当前距离页面左边的距离-拉动框与画面左边的距离-按钮宽度的一半)
+                captcha.style.setProperty(
+                    "--moved",
+                    `${e.clientX - offsetLeft - buttonWidth / 2}px`
+                );
+            }
+        };
+        // 鼠标松开
+        document.onmouseup = (e) => {
+            if (shouldMove) {
+                // 获取当前距离页面左边的距离-拉动框与画面左边的距离,允许一定的误差
+                const finalOffset = e.clientX - handle.getBoundingClientRect().left;
+                if (finalOffset >= 430 && finalOffset <= 450) {
+                    // 满足条件就加上类名
+                    captcha.classList.add("passed");
+                } else {
+                    // 不满足条件就回到起点
+                    captcha.style.setProperty("--moved", "0px");
+                }
+                shouldMove = false;
+            }
+        };
+    </script>
+</body>
+
+</html>
